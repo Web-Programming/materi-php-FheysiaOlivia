@@ -2,7 +2,7 @@
 $nama = '';
 $email = '';
 $pesan = '';
-$postErrors = '';
+$postErrors = [];
 $postSuccess = '';
 if ($_SERVER['REQUEST_METHOD']=== 'POST'){
     $nama = trim($_POST['nama']?? '');
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
     if($email === ''){
         $postErrors[] = 'email Wajib disi.';
     } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $postErrors[] = 'Format Email Tidak Valid.'
+        $postErrors[] = 'Format Email Tidak Valid.';
     }
     if($pesan === ''){
         $postErrors[] = 'pesan Wajib disi.';
@@ -41,17 +41,17 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
             <strong>Validasi Gagal:</strong>
             <ul>
                 <?php foreach ($postErrors as $error): ?>
-                    <li><?= htmlspecialchars($error, ENT_QUOTES, 'UFT_8') ?></li>
+                    <li><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>
     <?php endif; ?>
     <?php if ($postSuccess): ?>
         <div class="success">Data Berhasil Dikirim Dengan Method POST</div>
-        <div class="reslut">
-            Nama: <?= htmlspecialchars($nama, ENT_QUOTES, 'UFT-8')?><br>
-            Email: <?= htmlspecialchars($email, ENT_QUOTES, 'UFT-8')?><br>
-            Pesan: <?= nl2br(htmlspecialchars($pesan, ENT_QUOTES, 'UFT-8'))?><br>
+        <div class="resultt">
+            Nama: <?= htmlspecialchars($nama, ENT_QUOTES, 'UTF-8')?><br>
+            Email: <?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8')?><br>
+            Pesan: <?= nl2br(htmlspecialchars($pesan, ENT_QUOTES, 'UTF-8'))?><br>
         </div>
     <?php endif;?>
     <a href="index2.php">Kembali ke Form</a>

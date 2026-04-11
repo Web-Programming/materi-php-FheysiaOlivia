@@ -1,6 +1,6 @@
 <?php
 $keyword = trim($_GET['keyword'] ?? '');
-$kategori =  trim($_GET['kategori'] ?? ''semua);
+$kategori =  trim($_GET['kategori'] ?? 'semua');
 ?>
 <!DOCTYPE html>
 <html lang="en">

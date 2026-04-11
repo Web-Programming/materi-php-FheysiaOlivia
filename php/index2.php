@@ -13,7 +13,7 @@
         <label for="email">Email</label>
         <input id="email" name=email type="email" placeholder="nama@email.com"><br/>
         <label for="pesan">Pesan</label>
-        <input id="pesam" name=pesan rows="4" placeholder="Isi Pesan Anda"><br/>
+        <input id="pesan" name=pesan rows="4" placeholder="Isi Pesan Anda"><br/>
         <button type="submit">Kirim (POST)</button>
     </form>
 </body>
