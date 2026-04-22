@@ -1,0 +1,65 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    echo "Haloo, nama saya Pei!";
+    //return view('welcome');
+});
+
+Route::get('/alamat', function () {
+    echo "Jalan Sematang Borang Toko Wijaya No.4 Palembang";
+    //return view('welcome');
+});
+
+Route::get('/path1/path2/detail', function () {
+    echo "Jalan Sematang Borang Toko Wijaya No.4 Palembang";
+    echo "<br>";
+    echo "Jalan Sematang Borang Toko Wijaya No.5 Palembang";
+    echo "<br>";
+    echo "Jalan Sematang Borang Toko Wijaya No.6 Palembang";
+    //return view('welcome');
+});
+
+// route dinamis dengan parameter id
+Route::get('/user/{id}', function ($id) {
+    echo "User ID: ". $id;
+});
+
+// route dinamis dengan parameter nama
+Route::get('/user2/{name}', function ($name) {
+    echo "User Name: ". $name;
+});
+
+// route dinamis dengan opsional parameter nama
+Route::get('/user3/{name?}', function ($name = 'Tamu') {
+    echo "User Name: ". $name;
+});
+
+// route dinamis dengan opsional parameter nama dan id
+Route::get('/user4/{id}/{name}', function ($id, $name) {
+    echo "User Id: ". $id;
+    echo <br>;
+    echo "User Name: ". $name;
+});
+
+// router dengan metode post
+Route::post('/simpan', function()){
+    echo "Data berhasil di simpan"
+}
+// router dengan metode put
+Route::put('/update/{id}', function($id){
+    echo "Data berhasil diperbarui dengan id: ".$id
+})
+// router dengan metode patch
+Route::patch('/update2/{id}', function($id){
+    echo "Data berhasil diperbarui dengan id: ".$id
+})
+// router dengan metode delete
+Route::delete('/hapus/{id}', function($id){
+    echo "Data berhasil diperbarui dengan id: ".$id
+})
+//route untuk menampilkan halam test_method
+Route::get('/test-method', function(){
+    return view('test_method');
+})
