@@ -14,6 +14,6 @@
 </form>
 <form action="/update2/1" method="POST">
     @csrf
-    @methode('DELETE')
+    @method('DELETE')
     <button type="submit">Hapus Data (DELETE)</button>
 </form>

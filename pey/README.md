@@ -1,4 +1,21 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Tahapan Instalasi Project
+1. clone project dari repo
+2. akses project dari terminal (command prompt)
+3. jalankan perintah `composer intsall` untuk mendownload depedensi
+4. copy file `.env.example` dan rename menjadi `.env`
+5. jalankan perintah `php artisan key:generate`
+
+## Menyiapkan databse
+1. buat file `database.sqlite` di dalam folder `database/`
+2. jalankan perintah `php artisan migrate`
+
+## Menjalankan server
+1. pastikan seluruh dependensi telah terinstall 
+2. pastikan key sudah digenerate
+3. pastikan database sudah disiapkan
+4. jalankan perintah `php artisan serve`
+
+<!-- <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -55,4 +72,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
