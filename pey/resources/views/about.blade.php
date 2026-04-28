@@ -1,1 +1,1 @@
-<h1>ini adalah bagian about</h1>
+{{-- <h1>ini adalah bagian about</h1> --}}
