@@ -111,5 +111,8 @@ route::get('/supplier/search', function(){
     return view('supplier.search');
 });
 route::get('/supplier/detail', function(){
-    return view('supplier                                   .detail');
+    return view('supplier.detail');
 });
+use App\Http\Controllers\productController;
+Route::resource('/produk', ProductController::class);
+Route::get('/produk/search', ProductController::class.'@search');
