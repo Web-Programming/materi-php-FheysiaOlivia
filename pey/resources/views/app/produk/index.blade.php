@@ -7,7 +7,7 @@
             <a href="/produk/search" class="list-group-item list-group-item-action ps-4">Cari Produk</a>
         @endsection
     @endsection
-@section('content')
+{{-- @section('content')
     <h1 class="h-3 mb-3">Produk Index</h1>
     <p class="text-muted">Halaman daftar produk menggunakan layout master</p>
 
@@ -16,7 +16,7 @@
             Konten produk bisa di tampilkan disini
         </div>
     </div>
-@endsection
+@endsection --}}
 
 @section('content')
 <div class="container-fluid">
@@ -33,17 +33,17 @@
                 </tr>
             </thead>
             <tbody>
-                @for ($i = 0; $i < count($products); $i++)
+                @foreach ($products as $item)
                     <tr>
-                        <td>{{ $i + 1 }}</td>
-                        <td>{{ $products[$i]['name'] }}</td>
-                        <td>Rp {{ number_format($products[$i]['price'], 0, ',', '.') }}</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>Rp {{ number_format($item->price, 2, ',', '.') }}</td>
                         <td>
-                            <a href="{{ url('/produk/' . $products[$i]['id']) }}" class="btn btn-sm btn-info">Detail</a>
-                            <a href="{{ url('/produk/' . $products[$i]['id']) . '/edit' }}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{{ url('/produk/' . $item->id) }}" class="btn btn-sm btn-info">Detail</a>
+                            <a href="{{ url('/produk/' . $item->id) . '/edit' }}" class="btn btn-sm btn-primary">Edit</a>
                         </td>
                     </tr>
-                @endfor
+                @endforeach
             </tbody>
         </table>
     </div>
