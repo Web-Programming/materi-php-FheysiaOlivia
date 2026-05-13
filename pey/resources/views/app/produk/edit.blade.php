@@ -1,11 +1,10 @@
 @extends('app.master')
 
-@section('title', 'Tambah Produk')
+@section('title', 'Edit Produk')
 
 @section('content')
 <div class="container-fluid">
     <h1>{{ $title }}</h1>
-
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="mb-0">
@@ -15,13 +14,14 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('produk.store') }}" method="POST">
+    <form action="{{ route('produk.update', $product->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <div class="mb-3">
             <label for="name" class="form-label">Nama Produk</label>
             <input type="text" name="name" id="name"
                 class="form-control @error('name') is-invalid @enderror"
-                value="{{ old('name') }}">
+                value="{{ old('name', $product->name) }}">
             @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -70,13 +70,16 @@
                 <div class="invalid feedback">{{ $message }}</div>
             @enderror
         </div>
+
         <div class="mb-3 form-check">
             <input type="checkbox" name="is_active" id="is_active" value="1"
             class="form-check-input" {{old('is_active') ? 'checked' : ''}}>
             <label for="is_active" class="form-check-label">Aktif</label>
         </div>
+
         <button type="submit" class="btn btn-primary">Simpan</button>
         <a href="{{ route('produk.index') }}" class="btn btn-secondary">Batal</a>
+
     </form>
 </div>
 @endsection

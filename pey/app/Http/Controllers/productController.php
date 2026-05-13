@@ -34,10 +34,12 @@ class ProductController extends Controller
         $title = "Tambah Produk";
         return view('app.produk.create', compact('title'));
     }
-    public function show (string $id){
-    $title = "Detail produk";
-    $product =  ['id' => 4, 'name' => 'Monitor', 'price' => 2500000];
-    return view('produk.detail', compact('id', 'product', 'title'));
+    public function show(string $id)
+    {
+        $title = "Detail Produk";
+        $product = Product::findOrFail($id);
+        return view('app.produk.detail',
+            compact('product', 'title'));
     }
 
     public function store(Request $request)
@@ -67,12 +69,13 @@ class ProductController extends Controller
         ->with('success', 'Produk berhasil ditambahkan.');
     }
 
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $title = 'Edit Produk';
         $product = Product::findOrFail($id);
-        return view('app.produk.edit', compact ('product', 'titile'));
+        return view('app.produk.edit', compact ('product', 'title'));
         }
+
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
@@ -94,9 +97,7 @@ class ProductController extends Controller
         'release_date.date' => 'Format tanggal rilis tidak valid.',
     ]);
     $validated['is_active'] = $request->has('is_active') ? 1 : 0;
-
-    Product->update($validated);
-
+    $product->update($validated);
     return redirect()->route('produk.index')
         ->with('success', 'Produk berhasil ditambahkan.');
     }
