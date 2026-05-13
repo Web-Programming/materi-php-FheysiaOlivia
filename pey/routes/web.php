@@ -101,7 +101,7 @@ route::get('/produk/search', function(){
 route::get('/produk/detail', function(){
     return view('produk.detail');
 });
-route::get('/supplier/', function(){
+route::get('/supplier', function(){
     return view('supplier.index');
 });
 route::get('/supplier/create', function(){

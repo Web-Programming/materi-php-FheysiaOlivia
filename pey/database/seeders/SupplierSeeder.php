@@ -30,7 +30,10 @@ class SupplierSeeder extends Seeder
             'address' => 'Palembang'
         ]);
 
+        foreach ($suppliers as $supplier) {
+            Supplier::create($supplier);
 
 
+         }
     }
 }

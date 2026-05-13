@@ -1,4 +1,4 @@
-@extends('template')
+{{-- @extends('template')
 
 @section('title', 'Ini Halaman Detial')
     
@@ -22,4 +22,4 @@
         
     @endfor
 
-@endsection
+@endsection --}}

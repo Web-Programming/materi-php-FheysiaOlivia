@@ -29,6 +29,8 @@
                     <th>No</th>
                     <th>Nama Produk</th>
                     <th>Harga</th>
+                    <th>Status</th>
+                    <th>aktif</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -41,6 +43,8 @@
                         <td>
                             <a href="{{ url('/produk/' . $item->id) }}" class="btn btn-sm btn-info">Detail</a>
                             <a href="{{ url('/produk/' . $item->id) . '/edit' }}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{{ url('/produk/' . $item->id) }}" class="btn btn-sm btn-success">Status</a>
+                            <a href="{{ url('/produk/' . $item->id) . '/delete' }}" class="btn btn-sm btn-danger">Delete</a>
                         </td>
                     </tr>
                 @endforeach
