@@ -2,117 +2,180 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Route::get('/', function () {
+//     echo "Haloo, nama saya Pei!";
+//     //return view('welcome');
+// });
+
+// Route::get('/alamat', function () {
+//     echo "Jalan Sematang Borang Toko Wijaya No.4 Palembang";
+//     //return view('welcome');
+// });
+
+// Route::get('/path1/path2/detail', function () {
+//     echo "Jalan Sematang Borang Toko Wijaya No.4 Palembang";
+//     echo "<br>";
+//     echo "Jalan Sematang Borang Toko Wijaya No.5 Palembang";
+//     echo "<br>";
+//     echo "Jalan Sematang Borang Toko Wijaya No.6 Palembang";
+//     //return view('welcome');
+// });
+
+// // route dinamis dengan parameter id
+// Route::get('/user/{id}', function ($id) {
+//     echo "User ID: ". $id;
+// });
+
+// // route dinamis dengan parameter nama
+// Route::get('/user2/{name}', function ($name) {
+//     echo "User Name: ". $name;
+// });
+
+// // route dinamis dengan opsional parameter nama
+// Route::get('/user3/{name?}', function ($name = 'Tamu') {
+//     echo "User Name: ". $name;
+// });
+
+// // route dinamis dengan opsional parameter nama dan id
+// Route::get('/user4/{id}/{name}', function ($id, $name) {
+//     echo "User Id: ". $id;
+//     echo "<br>";
+//     echo "User Name: ". $name;
+// });
+
+// // router dengan metode post
+// Route::post('/simpan', function(){
+//     echo "Data berhasil di simpan";
+// });
+// // router dengan metode put
+// Route::put('/update/{id}', function($id){
+//     echo "Data berhasil diperbarui dengan id: ".$id;
+// });
+// // router dengan metode patch
+// Route::patch('/update2/{id}', function($id){
+//     echo "Data berhasil diperbarui dengan id: ".$id;
+// });
+// // router dengan metode delete
+// Route::delete('/hapus/{id}', function($id){
+//     echo "Data berhasil diperbarui dengan id: ".$id;
+// });
+// //route untuk menampilkan halam test_method
+// Route::get('/test-method', function(){
+//     return view('test_method');
+// });
+
+// // menampilkan halaman profile
+// Route::get('/profile', function(){
+//     return view("profile");
+// });
+
+// Route::get('/aboutprofile', function(){
+//     return view("about");
+// });
+
+// // // dalam folder gunakan titik (folder produk file detail)
+// // Route::get('/detailproduk', function(){
+// //     return view("produk.detail");
+// // });
+
+// // mengirim data ke view
+// // Route::get('/detailproduk/{name}', function($name){
+// //     return view("produk.detail", 
+// //     ['product_name' => $name,
+// //     'id' => 101,
+// //     'color' => 'pink',
+// //     'stock' => 12
+// //     ]);
+// // });
+
+
+// route::get('/produk/', function(){
+//     return view('produk.index');
+// });
+// route::get('/produk/create', function(){
+//     return view('produk.create');
+// });
+// route::get('/produk/search', function(){
+//     return view('produk.search');
+// });
+// route::get('/produk/detail', function(){
+//     return view('produk.detail');
+// });
+// route::get('/supplier', function(){
+//     return view('supplier.index');
+// });
+// route::get('/supplier/create', function(){
+//     return view('supplier.create');
+// });
+// route::get('/supplier/search', function(){
+//     return view('supplier.search');
+// });
+// route::get('/supplier/detail', function(){
+//     return view('supplier.detail');
+// });
+// use App\Http\Controllers\productController;
+// Route::resource('/produk', ProductController::class);
+// Route::get('/produk/search', ProductController::class.'@search');
+
+
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+
+// ==================== HOME ====================
+
 Route::get('/', function () {
-    echo "Haloo, nama saya Pei!";
-    //return view('welcome');
-});
+    return view('home');
+})->name('home');
 
-Route::get('/alamat', function () {
-    echo "Jalan Sematang Borang Toko Wijaya No.4 Palembang";
-    //return view('welcome');
-});
+// ==================== ROUTE AUTHENTIKASI ====================
 
-Route::get('/path1/path2/detail', function () {
-    echo "Jalan Sematang Borang Toko Wijaya No.4 Palembang";
-    echo "<br>";
-    echo "Jalan Sematang Borang Toko Wijaya No.5 Palembang";
-    echo "<br>";
-    echo "Jalan Sematang Borang Toko Wijaya No.6 Palembang";
-    //return view('welcome');
-});
+// Tampilkan form register
+Route::get('/register', [AuthController::class, 'registerForm'])
+    ->name('register')
+    ->middleware('guest');
 
-// route dinamis dengan parameter id
-Route::get('/user/{id}', function ($id) {
-    echo "User ID: ". $id;
-});
+// Proses simpan register
+Route::post('/register', [AuthController::class, 'register'])
+    ->middleware('guest');
 
-// route dinamis dengan parameter nama
-Route::get('/user2/{name}', function ($name) {
-    echo "User Name: ". $name;
-});
+// Tampilkan form login
+Route::get('/login', [AuthController::class, 'loginForm'])
+    ->name('login')
+    ->middleware('guest');
 
-// route dinamis dengan opsional parameter nama
-Route::get('/user3/{name?}', function ($name = 'Tamu') {
-    echo "User Name: ". $name;
-});
+// Proses login
+Route::post('/login', [AuthController::class, 'login'])
+    ->middleware('guest');
 
-// route dinamis dengan opsional parameter nama dan id
-Route::get('/user4/{id}/{name}', function ($id, $name) {
-    echo "User Id: ". $id;
-    echo "<br>";
-    echo "User Name: ". $name;
-});
+// Proses logout
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout')
+    ->middleware('auth');
 
-// router dengan metode post
-Route::post('/simpan', function(){
-    echo "Data berhasil di simpan";
-});
-// router dengan metode put
-Route::put('/update/{id}', function($id){
-    echo "Data berhasil diperbarui dengan id: ".$id;
-});
-// router dengan metode patch
-Route::patch('/update2/{id}', function($id){
-    echo "Data berhasil diperbarui dengan id: ".$id;
-});
-// router dengan metode delete
-Route::delete('/hapus/{id}', function($id){
-    echo "Data berhasil diperbarui dengan id: ".$id;
-});
-//route untuk menampilkan halam test_method
-Route::get('/test-method', function(){
-    return view('test_method');
-});
+// ==================== ROUTE YANG DILINDUNGI ====================
 
-// menampilkan halaman profile
-Route::get('/profile', function(){
-    return view("profile");
-});
+Route::middleware('auth')->group(function () {
 
-Route::get('/aboutprofile', function(){
-    return view("about");
-});
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
-// // dalam folder gunakan titik (folder produk file detail)
-// Route::get('/detailproduk', function(){
-//     return view("produk.detail");
-// });
+    Route::get('/produk', [ProductController::class, 'index']);
 
-// mengirim data ke view
-// Route::get('/detailproduk/{name}', function($name){
-//     return view("produk.detail", 
-//     ['product_name' => $name,
-//     'id' => 101,
-//     'color' => 'pink',
-//     'stock' => 12
-//     ]);
-// });
+    Route::get('/produk/create', [ProductController::class, 'create']);
 
+    Route::get('/produk/{id}', [ProductController::class, 'show']);
 
-route::get('/produk/', function(){
-    return view('produk.index');
+    Route::get('/produk/edit/{id}', [ProductController::class, 'edit']);
+
+    Route::post('/produk', [ProductController::class, 'store']);
+
+    Route::put('/produk/update/{id}', [ProductController::class, 'update']);
+
+    Route::delete('/produk/{id}', [ProductController::class, 'destroy']);
+
+    // Daftarkan Route Lainnya di Sini
+    // - Route Supplier
+
 });
-route::get('/produk/create', function(){
-    return view('produk.create');
-});
-route::get('/produk/search', function(){
-    return view('produk.search');
-});
-route::get('/produk/detail', function(){
-    return view('produk.detail');
-});
-route::get('/supplier', function(){
-    return view('supplier.index');
-});
-route::get('/supplier/create', function(){
-    return view('supplier.create');
-});
-route::get('/supplier/search', function(){
-    return view('supplier.search');
-});
-route::get('/supplier/detail', function(){
-    return view('supplier.detail');
-});
-use App\Http\Controllers\productController;
-Route::resource('/produk', ProductController::class);
-Route::get('/produk/search', ProductController::class.'@search');
