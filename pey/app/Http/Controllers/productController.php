@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 class ProductController extends Controller
 {
 
@@ -30,7 +31,9 @@ class ProductController extends Controller
     }
 
     public function create()
-    {
+    { 
+        Gate::authorize('create-product');
+        
         $title = "Tambah Produk";
         return view('app.produk.create', compact('title'));
     }
@@ -71,6 +74,8 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        Gate::authorize('update-product, $product');
+
         $title = 'Edit Produk';
         $product = Product::findOrFail($id);
         return view('app.produk.edit', compact ('product', 'title'));
@@ -101,5 +106,15 @@ class ProductController extends Controller
     return redirect()->route('produk.index')
         ->with('success', 'Produk berhasil ditambahkan.');
     }
+
+    public function destroy(string $id){
+        $product = Product::FindorFall($id);
+
+        Gate::authorize('delete-product', $product);
+
+        $product->delete();
+        return redirect()->route('produk.index')-> with('success', 'Produk Berhasil di Hapus');
+    }
+
 }
 
